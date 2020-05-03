@@ -2,6 +2,7 @@
 using config_app.DAL;
 using config_app.Models;
 using config_app.Repositories.Abstractions;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace config_app.Repositories
 
         private readonly ConfigAppContext _context;
 
-        public void SetLastLocation(LastLocation location)
+        public void SetLastLocation([FromBody]LastLocation location)
         {
             var lastLocation = _context.LastLocations.Where(l => l.EmployeeId == location.EmployeeId).FirstOrDefault();
             if (lastLocation != null)
