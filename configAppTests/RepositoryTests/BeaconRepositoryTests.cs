@@ -5,6 +5,7 @@ using config_app.Repositories.Abstractions;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -62,6 +63,77 @@ namespace configAppTests
             //Assert
             Assert.IsTrue(result.Any(b => b.ConnectableName == beaconMappings[0].ConnectableName));
             Assert.IsTrue(result.Any(b => b.ConnectableName == beaconMappings[1].ConnectableName));
+
+        }
+
+        [TestMethod]
+        public void GetBeaconMapping_ReturnsNullIfNotExist()
+        {
+            using ConfigAppContext context = new ConfigAppContext(_options);
+            IBeaconRepository repo = new BeaconRepository(context);
+            var result = repo.GetBeaconMapping("", 0, 0);
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void GetBeaconMapping_ReturnsBeaconMapping()
+        {
+            using ConfigAppContext context = new ConfigAppContext(_options);
+            var uuid = Guid.NewGuid().ToString();
+            var expected = new BeaconMapping
+            {
+                ProximityUuid = uuid,
+                Minor = 1,
+                Major = 1,
+                ConnectableName = "someName",
+                ReadableName = "name"
+            };
+            IBeaconRepository repo = new BeaconRepository(context);
+            var beaconMappings = new BeaconMapping[]
+            {
+                expected,
+                new BeaconMapping{
+                    ProximityUuid= Guid.NewGuid().ToString(),
+                    Minor = 1,
+                    Major = 1,
+                    ConnectableName="someName2",
+                    ReadableName="name2"
+                },
+                new BeaconMapping{
+                    ProximityUuid= uuid,
+                    Minor = 2,
+                    Major = 1,
+                    ConnectableName="someName2",
+                    ReadableName="name2"
+                },
+            };
+            TestHelper.InjectData(_options, beaconMappings);
+            // Act
+            var result = repo.GetBeaconMapping(uuid, 1, 1);
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void GetReadableLocationName_ReturnsReadableLocationName()
+        {
+            using (ConfigAppContext context = new ConfigAppContext(_options))
+            {
+                IBeaconRepository repo = new BeaconRepository(context);
+                context.BeaconMappings.Add(new BeaconMapping()
+                {
+                    ConnectableName = "randomName",
+                    ReadableName = "Voordeur"
+                });
+            }
+            using (ConfigAppContext context = new ConfigAppContext(_options))
+            {
+                IBeaconRepository repo = new BeaconRepository(context);
+                var result = repo.GetReadableLocationName("randomName");
+                Assert.AreEqual("Voordeur", result);
+
+            }
+
 
         }
 

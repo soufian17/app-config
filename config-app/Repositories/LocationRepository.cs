@@ -34,7 +34,8 @@ namespace config_app.Repositories
 
         public IEnumerable<LastLocation> GetAllLocations()
         {
-            return _context.LastLocations.ToList();
+            return _context.LastLocations
+                .ToList();
         }
     }
 }

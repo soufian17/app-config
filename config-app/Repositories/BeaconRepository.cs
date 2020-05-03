@@ -19,7 +19,22 @@ namespace config_app.Repositories
 
         public IEnumerable<BeaconMapping> GetAllBeaconMappings()
         {
-           return _context.BeaconMappings.ToList();
+            return _context.BeaconMappings.ToList();
+        }
+
+        public BeaconMapping GetBeaconMapping(string proximityUuid, int minor, int major)
+        {
+            return _context.BeaconMappings
+                .Where(bm => bm.ProximityUuid == proximityUuid && bm.Minor == minor && bm.Major == major)
+                .FirstOrDefault();
+        }
+
+        public string GetReadableLocationName(string connectableName)
+        {
+            return _context.BeaconMappings
+                .Where(l => l.ConnectableName == connectableName)
+                .FirstOrDefault()
+                ?.ReadableName;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace config_app.Models
     {
         public long Id { get; set; }
         public string EmployeeId { get; set; }
+        public string EmployeeName { get; set; }
         public string ReadableLocationName { get; set; }
-        public string Name { get; set; }
     }
 }

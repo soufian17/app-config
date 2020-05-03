@@ -24,5 +24,18 @@ namespace config_app.Controllers
         {
             return _beaconRepo.GetAllBeaconMappings();
         }
+
+        [HttpGet]
+        [Route("{proximityUuid}/{minor}/{major}")]
+        public BeaconMapping Get(string proximityUuid, int minor, int major)
+        {
+            return _beaconRepo.GetBeaconMapping(proximityUuid, minor, major);
+        }
+        [HttpGet]
+        [Route("{connectableName}")]
+        public string GetReadableName(string connectableName)
+        {
+            return _beaconRepo.GetReadableLocationName(connectableName);
+        }
     }
 }
