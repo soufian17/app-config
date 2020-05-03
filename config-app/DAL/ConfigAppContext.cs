@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using config_app.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,6 @@ namespace config_app.DAL
         }
 
         public DbSet<BeaconMapping> BeaconMappings { get; set; }
+        public DbSet<LastLocation> LastLocations { get; set; }
     }
 }

@@ -35,6 +35,7 @@ namespace config_app
                 options.UseMySql(Configuration.GetConnectionString("ConfigContext"));
             });
             services.AddScoped<IBeaconRepository, BeaconRepository>();
+            services.AddScoped<ILocationRepository, LocationRepository>();
             // Database opzetten, testen
             services.AddControllers();
         }

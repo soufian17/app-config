@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "config-app", "config-app\config-app.csproj", "{EA9E5CFB-5C66-429F-8356-CDD1D342DB18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "config-app", "config-app\config-app.csproj", "{EA9E5CFB-5C66-429F-8356-CDD1D342DB18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "configAppTests", "configAppTests\configAppTests.csproj", "{B813DD14-21A3-44CC-856D-9008767913BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{EA9E5CFB-5C66-429F-8356-CDD1D342DB18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA9E5CFB-5C66-429F-8356-CDD1D342DB18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA9E5CFB-5C66-429F-8356-CDD1D342DB18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B813DD14-21A3-44CC-856D-9008767913BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B813DD14-21A3-44CC-856D-9008767913BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B813DD14-21A3-44CC-856D-9008767913BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B813DD14-21A3-44CC-856D-9008767913BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
