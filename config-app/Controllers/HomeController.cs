@@ -9,7 +9,7 @@ namespace config_app.Controllers
     [Route("apple-app-site-association")]
     public class HomeController : Controller
     {
-        
+        [HttpGet]
         public IActionResult Index()
         {
             return Json(

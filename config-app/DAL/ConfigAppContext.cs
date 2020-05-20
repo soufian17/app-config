@@ -17,5 +17,6 @@ namespace config_app.DAL
 
         public DbSet<BeaconMapping> BeaconMappings { get; set; }
         public DbSet<LastLocation> LastLocations { get; set; }
+        public DbSet<Employee> Employees { get; set; }
     }
 }

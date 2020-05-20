@@ -1,18 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using config_app.Repositories;
 using config_app.Repositories.Abstractions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace config_app.Controllers
 {
     [ApiController]
-    [Route("beacon-mapping")]
-    public class BeaconMappingController : ControllerBase
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Route("api/beacon-mapping")]
+    public class ApiBeaconMappingController : Controller
     {
-        public BeaconMappingController(IBeaconRepository beaconRepo)
+        public ApiBeaconMappingController(IBeaconRepository beaconRepo)
         {
             _beaconRepo = beaconRepo;
         }
@@ -22,9 +29,9 @@ namespace config_app.Controllers
         [HttpGet]
         public IEnumerable<BeaconMapping> Get()
         {
+
             return _beaconRepo.GetAllBeaconMappings();
         }
-
         [HttpGet]
         [Route("{proximityUuid}/{minor}/{major}")]
         public BeaconMapping Get(string proximityUuid, int minor, int major)

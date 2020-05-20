@@ -1,34 +1,25 @@
-﻿using config_app.Models;
-using config_app.Repositories.Abstractions;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using config_app.Repositories.Abstractions;
+using Microsoft.AspNetCore.Mvc;
 
 namespace config_app.Controllers
 {
-    [ApiController]
     [Route("location")]
-    public class LocationController : ControllerBase
+    public class LocationController : Controller
     {
         public LocationController(ILocationRepository locationRepo)
         {
             _locationRepo = locationRepo;
         }
-
         private readonly ILocationRepository _locationRepo;
 
-        [HttpPost]
-        public LastLocation Post(LastLocation location)
-        {
-            _locationRepo.SetLastLocation(location);
-            return location;
-        }
         [HttpGet]
-        public IEnumerable<LastLocation> Get()
+        public IActionResult Index()
         {
-            return _locationRepo.GetAllLocations();
+            return View(_locationRepo.GetAllLocations());
         }
     }
 }

@@ -5,11 +5,9 @@ using System.Threading.Tasks;
 
 namespace config_app.Models
 {
-    public class LastLocation
+    public class Employee
     {
-        public long Id { get; set; }
-        public string EmployeeName { get; set; }
-        public string ReadableLocationName { get; set; }
+        public string UserId { get; set; }
         public string EmployeeId { get; set; }
     }
 }
