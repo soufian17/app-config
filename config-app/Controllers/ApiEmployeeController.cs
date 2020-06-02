@@ -22,9 +22,10 @@ namespace config_app.Controllers
 
         [HttpGet]
         [Route("{userId}")]
-        public string GetEmployeeId(string userId)
+        public JsonResult GetEmployeeId(string userId)
         {
-            return _employeeRepo.GetEmployeeId(userId);
+            var employee =  _employeeRepo.GetEmployeeData(userId);
+            return Json(employee);
         }
     }
 }

@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace config_app.DAL
 {
 
-    public class ConfigAppContext: DbContext
+    public class ConfigAppContext : DbContext
     {
-        public ConfigAppContext(DbContextOptions<ConfigAppContext> contextOptions): base(contextOptions)
+        public ConfigAppContext(DbContextOptions<ConfigAppContext> contextOptions) : base(contextOptions)
         {
 
         }

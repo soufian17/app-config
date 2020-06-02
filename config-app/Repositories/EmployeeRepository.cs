@@ -17,20 +17,20 @@ namespace config_app.Repositories
 
         private readonly ConfigAppContext _context;
 
-        public string GetEmployeeId(string userId)
+        public Employee GetEmployeeData(string userId)
         {
             var employee = _context.Employees.FirstOrDefault(x => x.UserId == userId);
             if (employee != null)
             {
-                return employee.EmployeeId;
+                return employee;
             }
             else
             {
                 // generate ID
-                var newEmployee = new Employee { UserId = userId, EmployeeId = new Random().Next(10000000, 999999999).ToString() };
+                var newEmployee = new Employee { Role = EmployeeRole.Employee, UserId = userId, EmployeeId = new Random().Next(10000000, 999999999).ToString() };
                 _context.Add(newEmployee);
                 _context.SaveChanges();
-                return newEmployee.EmployeeId;
+                return newEmployee;
             }
         }
     }

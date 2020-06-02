@@ -9,5 +9,7 @@ namespace config_app.Models
     {
         public string UserId { get; set; }
         public string EmployeeId { get; set; }
+        public EmployeeRole Role { get; set; }
     }
+    public enum EmployeeRole { Employee, Secretary}
 }

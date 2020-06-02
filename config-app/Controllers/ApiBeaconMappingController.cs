@@ -29,7 +29,6 @@ namespace config_app.Controllers
         [HttpGet]
         public IEnumerable<BeaconMapping> Get()
         {
-
             return _beaconRepo.GetAllBeaconMappings();
         }
         [HttpGet]
