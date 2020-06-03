@@ -103,15 +103,15 @@ namespace configAppTests
                     ProximityUuid= uuid,
                     Minor = 2,
                     Major = 1,
-                    ConnectableName="someName2",
-                    ReadableName="name2"
+                    ConnectableName="someName3",
+                    ReadableName="name3"
                 },
             };
             TestHelper.InjectData(_options, beaconMappings);
             // Act
             var result = repo.GetBeaconMapping(uuid, 1, 1);
             //Assert
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expected.ConnectableName, result.ConnectableName);
         }
 
         [TestMethod]
@@ -125,6 +125,7 @@ namespace configAppTests
                     ConnectableName = "randomName",
                     ReadableName = "Voordeur"
                 });
+                context.SaveChanges();
             }
             using (ConfigAppContext context = new ConfigAppContext(_options))
             {

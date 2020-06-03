@@ -9,5 +9,6 @@ namespace config_app.Repositories.Abstractions
     public interface IEmployeeRepository
     {
         Employee GetEmployeeData(string userId);
+        void AddVisitorAccount(string userId, DateTime expiryDate);
     }
 }

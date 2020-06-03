@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Authentication.AzureAD.UI;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Identity.Web;
 using config_app.Models;
+using Microsoft.Identity.Client;
 
 namespace config_app
 {
@@ -33,6 +34,7 @@ namespace config_app
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+       
             services.AddDbContext<ConfigAppContext>(options =>
             {
                 options.UseMySql(Configuration.GetConnectionString("ConfigContext"));

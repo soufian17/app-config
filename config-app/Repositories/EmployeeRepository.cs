@@ -20,18 +20,39 @@ namespace config_app.Repositories
         public Employee GetEmployeeData(string userId)
         {
             var employee = _context.Employees.FirstOrDefault(x => x.UserId == userId);
+
             if (employee != null)
             {
-                return employee;
+                if (employee.ValidUntil < DateTime.Now)
+                {
+                    return null;
+                }
+                else
+                {
+                    return employee;
+
+                }
             }
             else
             {
-                // generate ID
-                var newEmployee = new Employee { Role = EmployeeRole.Employee, UserId = userId, EmployeeId = new Random().Next(10000000, 999999999).ToString() };
+                var newEmployee = new Employee { ValidUntil = DateTime.MaxValue, Role = EmployeeRole.Employee, UserId = userId, EmployeeId = Employee.GenerateEmployeeId() };
                 _context.Add(newEmployee);
                 _context.SaveChanges();
                 return newEmployee;
             }
+
+        }
+
+        public void AddVisitorAccount(string userId, DateTime expiryDate)
+        {
+            _context.Employees.Add(new Employee
+            {
+                UserId = userId,
+                EmployeeId = Employee.GenerateEmployeeId(),
+                Role = EmployeeRole.Visitor,
+                ValidUntil = expiryDate
+            });
+            _context.SaveChanges();
         }
     }
 }
