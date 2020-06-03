@@ -34,7 +34,7 @@ namespace config_app
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-       
+
             services.AddDbContext<ConfigAppContext>(options =>
             {
                 options.UseMySql(Configuration.GetConnectionString("ConfigContext"));
@@ -100,7 +100,13 @@ namespace config_app
                 }
                 if (!context.Employees.Any())
                 {
-                    context.Employees.Add(new Employee { EmployeeId = "5347823982530", UserId = "e964c7ba-432f-4b56-ae9f-2f7b94e9f119" });
+                    context.Employees.Add(new Employee
+                    {
+                        EmployeeId = "5347823982530",
+                        UserId = "e964c7ba-432f-4b56-ae9f-2f7b94e9f119",
+                        ValidUntil = DateTime.MaxValue,
+                        Role = EmployeeRole.Employee
+                    });
                     context.SaveChanges();
                 }
             }
